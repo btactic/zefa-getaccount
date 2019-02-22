@@ -34,46 +34,19 @@ ZaZefaGetaccountTab = function(parent, entry) {
     resp = ZaRequestMgr.invoke(csfeParams, reqMgrParams);
 
     document.getElementById('ztab__ZEFA_GETACCOUNT').innerHTML = 
-    '<div style="padding-left:10px"><h1>ZEFA\'s Getaccount extension</h1>' +
-    '<h2>Create and remove shares</h2>\
-    This option allows you to share an entire account with another account. Useful for department and team mailboxes.\
-    <br><br>\
-    <select id="ZefaGetaccount-action" onchange="ZaZefaGetaccountTab.prototype.uiUpdate(this.value);" >\
-        <option value="createShare">Share</option>\
-        <option value="removeShare">Unshare</option>\
-    </select>\
-    the account \
-    <input type="text" id="ZefaGetaccount-account-a" list="ZefaGetaccount-datalist" placeholder="user@domain.com">&nbsp;\
-    <span id="ZefaGetaccount-withfrom">with</span>:&nbsp;\
-    \
-    <input type="text" id="ZefaGetaccount-account-b" list="ZefaGetaccount-datalist" placeholder="other-user@domain.com">\
-    <datalist id="ZefaGetaccount-datalist"></datalist>&nbsp;&nbsp;\
-    <button id="ZefaGetaccount-btnCreateShare">OK</button>' +
-    '<br><br>\
-    \
-    \
-    <input type="checkbox" id="ZefaGetaccount-disablePersonaCreation">Share only (skip configuring sendAs/persona\'s and mail filter).' +
-    '<br><br><b>Permissions:</b>' +
-    '<br><select onchange="ZaZefaGetaccountTab.prototype.uiUpdate(this.value);" id="ZefaGetaccount-permissions">'+
-    '<option value="r">r</option>' +
-    '<option value="rw">rw</option>' +
-    '<option value="rwix">rwix</option>' +
-    '<option selected="selected" value="rwixd">rwixd</option>' +
-    '<option value="rwixda">rwixda</option>' +
-    '<option value="none">none</option></select>' +    
-    '<small style="font-size:11px;"><ul><li> (r)ead - search, view overviews and items</li><li> (w)rite - edit drafts/contacts/notes, set flags </li><li> (i)nsert - copy/add to directory, create subfolders action</li><li> (x) - workflow actions, like accepting appointments</li><li> (d)elete - delete items and subfolders, set \Deleted flag</li><li> (a)dminister - delegate admin and change permissions</li></ul></small>' +
-    '<br><hr>'
+    '<div style="padding-left:10px"><h1>ZEFA\'s Getaccount extension</h1>'
+
     +
+
     '<h2>Generate persona\'s</h2>This option allows you to generate a persona for each alias in the users account. <br><br><input type="text" id="ZefaGetaccount-account-c" list="ZefaGetaccount-datalist" placeholder="user@domain.com">&nbsp;&nbsp;<button id="ZefaGetaccount-btnPersonaGen">OK</button>' +
     '<br><br><hr>'
+
     +
     '<h2>Status</h2><div id="ZefaGetaccount-status" style="color:#aaaaaa; font-style: italic;"></div></div>';   
-    
+
     ZaZefaGetaccountTab.prototype.status('Loading auto completion...');
-    
-    var btnCreateShare = document.getElementById('ZefaGetaccount-btnCreateShare');
-    btnCreateShare.onclick = AjxCallback.simpleClosure(this.btnCreateRemoveShare);
-    
+
+
     var btnPersonaGen = document.getElementById('ZefaGetaccount-btnPersonaGen');
     btnPersonaGen.onclick = AjxCallback.simpleClosure(this.btnPersonaGen);
 }
@@ -110,41 +83,6 @@ ZaZefaGetaccountTab.prototype.getAccountsCallback = function (result) {
    return;
 }
 
-ZaZefaGetaccountTab.prototype.btnCreateRemoveShare = function () {
-    if(document.getElementById('ZefaGetaccount-action').value == 'createShare')
-    {
-       ZaZefaGetaccountTab.prototype.status('Creating share...');
-    }
-    else
-    {
-       ZaZefaGetaccountTab.prototype.status('Removing share...');
-    }   
-    var accountA = document.getElementById('ZefaGetaccount-account-a').value;
-    var accountB = document.getElementById('ZefaGetaccount-account-b').value;
-    var skipPersonaCreation = document.getElementById('ZefaGetaccount-disablePersonaCreation').checked;
-    var permissions = document.getElementById('ZefaGetaccount-permissions').value;
-    
-    if(accountA && accountB && (accountA !== accountB))
-    {
-       var soapDoc = AjxSoapDoc.create("ZefaGetaccount", "urn:ZefaGetaccount", null);
-       soapDoc.getMethod().setAttribute("action", document.getElementById('ZefaGetaccount-action').value);
-       soapDoc.getMethod().setAttribute("accounta", accountA);
-       soapDoc.getMethod().setAttribute("accountb", accountB);
-       soapDoc.getMethod().setAttribute("skipPersonaCreation", skipPersonaCreation);
-       soapDoc.getMethod().setAttribute("permissions", permissions);
-       var csfeParams = new Object();
-       csfeParams.soapDoc = soapDoc;
-       csfeParams.asyncMode = true;
-       csfeParams.callback = new AjxCallback(ZaZefaGetaccountTab.prototype.zefaGetaccountDefaultCallback);
-       var reqMgrParams = {} ;
-       resp = ZaRequestMgr.invoke(csfeParams, reqMgrParams);
-    }   
-    else
-    {
-       ZaZefaGetaccountTab.prototype.status('Select or type 2 different email addresses.');
-    }
-}   
-
 ZaZefaGetaccountTab.prototype.btnPersonaGen = function () {
     ZaZefaGetaccountTab.prototype.status('Creating persona\'s...');
 
@@ -177,24 +115,4 @@ ZaZefaGetaccountTab.prototype.status = function (statusText) {
    document.getElementById('ZefaGetaccount-status').innerHTML = statusText;
 }
 
-ZaZefaGetaccountTab.prototype.uiUpdate = function (value) {
-   if(value == 'createShare')
-   {
-      document.getElementById('ZefaGetaccount-withfrom').innerHTML = 'with';
-      document.getElementById('ZefaGetaccount-permissions').value = 'rwixd';
-      document.getElementById('ZefaGetaccount-permissions').disabled = false;
-   }
-   else if(value == 'none')
-   {
-      document.getElementById('ZefaGetaccount-withfrom').innerHTML = 'from';
-      document.getElementById('ZefaGetaccount-permissions').value = 'none';
-      document.getElementById('ZefaGetaccount-permissions').disabled = true;
-      document.getElementById('ZefaGetaccount-action').value = 'removeShare';
-   }
-   else if(value == 'removeShare')
-   {
-      document.getElementById('ZefaGetaccount-withfrom').innerHTML = 'from';
-      document.getElementById('ZefaGetaccount-permissions').value = 'none';
-      document.getElementById('ZefaGetaccount-permissions').disabled = true;
-   }
-}
+

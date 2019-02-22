@@ -47,8 +47,8 @@ public class ZefaGetaccountSoapHandler extends DocumentHandler {
                     break;
                 case "createPersonas":
                     if (this.validate(request.getAttribute("accounta"))) {
-                        this.runCommand("/usr/local/sbin/personagen", request.getAttribute("accounta"), "", "", "");
-                        zefaGetaccountResult.setText("");
+                        String runCommandOutput = this.runCommand("/usr/local/sbin/personagen", request.getAttribute("accounta"), "", "", "");
+                        zefaGetaccountResult.setText("<pre>"+runCommandOutput+"</pre>");
                     } else {
                         zefaGetaccountResult.setText("Invalid email address specified.");
                     }

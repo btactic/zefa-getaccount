@@ -26,7 +26,7 @@ if(appNewUI && ZaSettings){
 
     ZaZimbraAdmin._ZEFA_GETACCOUNT_VIEW = ZaZimbraAdmin.VIEW_INDEX++;
 
-    ZaApp.prototype.getZaZefaGetaccountViewController =
+    ZaApp.prototype.getZefaGetaccountViewController =
         function() {
             if (this._controllers[ZaZimbraAdmin._ZEFA_GETACCOUNT_VIEW] == null)
                 this._controllers[ZaZimbraAdmin._ZEFA_GETACCOUNT_VIEW] = new ZaZefaGetaccountController(this._appCtxt, this._container);
@@ -37,9 +37,9 @@ if(appNewUI && ZaSettings){
         var zefaGetaccount = new ZaZefaGetaccount();
 
         if(ZaApp.getInstance().getCurrentController()) {
-            ZaApp.getInstance().getCurrentController().switchToNextView(ZaApp.getInstance().getZaZefaGetaccountViewController(),ZaZefaGetaccountController.prototype.show, [zefaGetaccount]);
+            ZaApp.getInstance().getCurrentController().switchToNextView(ZaApp.getInstance().getZefaGetaccountViewController(),ZaZefaGetaccountController.prototype.show, [zefaGetaccount]);
         } else {
-            ZaApp.getInstance().getZaZefaGetaccountViewController().show(zefaGetaccount);
+            ZaApp.getInstance().getZefaGetaccountViewController().show(zefaGetaccount);
         }
     }
 

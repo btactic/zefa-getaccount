@@ -38,7 +38,7 @@ ZaZefaGetaccountTab = function(parent, entry) {
 
     +
 
-    '<h2>Getaccount\'s</h2>This option allows you to output the equivalent of \'zmprov getAccount\' from the Zimbra UI.\
+    '<h2>Getaccount</h2>This option allows you to output the equivalent of \'zmprov getAccount\' from the Zimbra UI.\
     <br><br><input type="text" id="ZefaGetaccount-account-c" list="ZefaGetaccount-datalist" placeholder="user@domain.com">&nbsp;&nbsp;<button id="ZefaGetaccount-btnGetaccount">OK</button>' +
     '<br><br><hr>'
 

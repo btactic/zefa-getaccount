@@ -1,2 +1,2 @@
 Manifest-Version: 1.0
-Zimbra-Extension-Class: com.btactic.zefa.ZefaGetaccount
+Zimbra-Extension-Class: com.btactic.zefa.ZefaGetaccountExt

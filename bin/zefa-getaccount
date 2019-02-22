@@ -26,8 +26,9 @@ echo
 exit 1
 fi
 
-PARAMS=1
-if [ $# -ne "$PARAMS" ]
+#PARAMS=1
+#if [ $# -ne "$PARAMS" ]
+if [ $# -eq 0 ];
 then
 echo "Get account details."
 echo "zefa-getaccount <account>"

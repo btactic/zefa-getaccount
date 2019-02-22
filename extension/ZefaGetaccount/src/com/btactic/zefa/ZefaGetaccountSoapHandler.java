@@ -47,7 +47,7 @@ public class ZefaGetaccountSoapHandler extends DocumentHandler {
                     break;
                 case "getAccount":
                     if (this.validate(request.getAttribute("accounta"))) {
-                        String runCommandOutput = this.runCommand("/usr/local/sbin/zefa-getaccount", request.getAttribute("accounta"), "", "", "");
+                        String runCommandOutput = this.runCommandNormalOutput("/usr/local/sbin/zefa-getaccount", request.getAttribute("accounta"), "", "", "");
                         zefaGetaccountResult.setText("<pre>"+runCommandOutput+"</pre>");
                     } else {
                         zefaGetaccountResult.setText("Invalid email address specified.");
@@ -100,10 +100,10 @@ public class ZefaGetaccountSoapHandler extends DocumentHandler {
     }
 
     private String runCommand(String cmd, String arg1, String arg2, String arg3, String arg4) throws ServiceException {
-        runCommandPayload(cmd, ';', arg1, arg2, arg3, arg4)
+        return (runCommandPayload(cmd, ";", arg1, arg2, arg3, arg4));
     }
     private String runCommandNormalOutput(String cmd, String arg1, String arg2, String arg3, String arg4) throws ServiceException {
-        runCommandPayload(cmd, '\n', arg1, arg2, arg3, arg4)
+        return (runCommandPayload(cmd, "\n", arg1, arg2, arg3, arg4));
     }
 
 }

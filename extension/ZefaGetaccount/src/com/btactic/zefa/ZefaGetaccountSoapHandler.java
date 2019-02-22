@@ -39,11 +39,11 @@ public class ZefaGetaccountSoapHandler extends DocumentHandler {
             Element response = zsc.createElement(
                     "ZefaGetaccountResponse"
             );
-            Element ZefaGetaccountResult = response.addUniqueElement("ZefaGetaccountResult");
+            Element zefaGetaccountResult = response.addUniqueElement("zefaGetaccountResult");
 
             switch (request.getAttribute("action")) {
                 case "getAccounts":
-                    ZefaGetaccountResult.setText(this.runCommand("/usr/local/sbin/acctalias", "", "", "", ""));
+                    zefaGetaccountResult.setText(this.runCommand("/usr/local/sbin/acctalias", "", "", "", ""));
                     break;
                 case "createShare":
                 case "removeShare":
@@ -74,16 +74,16 @@ public class ZefaGetaccountSoapHandler extends DocumentHandler {
                                 this.runCommand("/usr/local/sbin/unsubzim", request.getAttribute("accountb"), request.getAttribute("accounta"), skipPersonaCreation, permissions);
                             }
 
-                        ZefaGetaccountResult.setText("");
+                        zefaGetaccountResult.setText("");
                     } else {
-                        ZefaGetaccountResult.setText("Invalid email address specified.");
+                        zefaGetaccountResult.setText("Invalid email address specified.");
                     }
                 case "createPersonas":
                     if (this.validate(request.getAttribute("accounta"))) {
                         this.runCommand("/usr/local/sbin/personagen", request.getAttribute("accounta"), "", "", "");
-                        ZefaGetaccountResult.setText("");
+                        zefaGetaccountResult.setText("");
                     } else {
-                        ZefaGetaccountResult.setText("Invalid email address specified.");
+                        zefaGetaccountResult.setText("Invalid email address specified.");
                     }
                     break;
             }

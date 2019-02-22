@@ -33,9 +33,26 @@ ZaZefaGetaccountTab = function(parent, entry) {
     var reqMgrParams = {} ;
     resp = ZaRequestMgr.invoke(csfeParams, reqMgrParams);
 
-    document.getElementById('ztab__ZEFA_GETACCOUNT').innerHTML = '<div style="padding-left:10px"><h1>ZEFA\'s Getaccount extension</h1>' +
-    '<h2>Create and remove shares</h2>This option allows you to share an entire account with another account. Useful for department and team mailboxes.<br><br><select id="ZefaGetaccount-action" onchange="ZaZefaGetaccountTab.prototype.uiUpdate(this.value);" ><option value="createShare">Share</option><option value="removeShare">Unshare</option></select> the account <input type="text" id="ZefaGetaccount-account-a" list="ZefaGetaccount-datalist" placeholder="user@domain.com">&nbsp;<span id="ZefaGetaccount-withfrom">with</span>:&nbsp;<input type="text" id="ZefaGetaccount-account-b" list="ZefaGetaccount-datalist" placeholder="other-user@domain.com"><datalist id="ZefaGetaccount-datalist"></datalist>&nbsp;&nbsp;<button id="ZefaGetaccount-btnCreateShare">OK</button>' +
-    '<br><br><input type="checkbox" id="ZefaGetaccount-disablePersonaCreation">Share only (skip configuring sendAs/persona\'s and mail filter).' +
+    document.getElementById('ztab__ZEFA_GETACCOUNT').innerHTML = 
+    '<div style="padding-left:10px"><h1>ZEFA\'s Getaccount extension</h1>' +
+    '<h2>Create and remove shares</h2>\
+    This option allows you to share an entire account with another account. Useful for department and team mailboxes.\
+    <br><br>\
+    <select id="ZefaGetaccount-action" onchange="ZaZefaGetaccountTab.prototype.uiUpdate(this.value);" >\
+        <option value="createShare">Share</option>\
+        <option value="removeShare">Unshare</option>\
+    </select>\
+    the account \
+    <input type="text" id="ZefaGetaccount-account-a" list="ZefaGetaccount-datalist" placeholder="user@domain.com">&nbsp;\
+    <span id="ZefaGetaccount-withfrom">with</span>:&nbsp;\
+    \
+    <input type="text" id="ZefaGetaccount-account-b" list="ZefaGetaccount-datalist" placeholder="other-user@domain.com">\
+    <datalist id="ZefaGetaccount-datalist"></datalist>&nbsp;&nbsp;\
+    <button id="ZefaGetaccount-btnCreateShare">OK</button>' +
+    '<br><br>\
+    \
+    \
+    <input type="checkbox" id="ZefaGetaccount-disablePersonaCreation">Share only (skip configuring sendAs/persona\'s and mail filter).' +
     '<br><br><b>Permissions:</b>' +
     '<br><select onchange="ZaZefaGetaccountTab.prototype.uiUpdate(this.value);" id="ZefaGetaccount-permissions">'+
     '<option value="r">r</option>' +
@@ -45,9 +62,11 @@ ZaZefaGetaccountTab = function(parent, entry) {
     '<option value="rwixda">rwixda</option>' +
     '<option value="none">none</option></select>' +    
     '<small style="font-size:11px;"><ul><li> (r)ead - search, view overviews and items</li><li> (w)rite - edit drafts/contacts/notes, set flags </li><li> (i)nsert - copy/add to directory, create subfolders action</li><li> (x) - workflow actions, like accepting appointments</li><li> (d)elete - delete items and subfolders, set \Deleted flag</li><li> (a)dminister - delegate admin and change permissions</li></ul></small>' +
-    '<br><hr>' +
+    '<br><hr>'
+    +
     '<h2>Generate persona\'s</h2>This option allows you to generate a persona for each alias in the users account. <br><br><input type="text" id="ZefaGetaccount-account-c" list="ZefaGetaccount-datalist" placeholder="user@domain.com">&nbsp;&nbsp;<button id="ZefaGetaccount-btnPersonaGen">OK</button>' +
-    '<br><br><hr>' +
+    '<br><br><hr>'
+    +
     '<h2>Status</h2><div id="ZefaGetaccount-status" style="color:#aaaaaa; font-style: italic;"></div></div>';   
     
     ZaZefaGetaccountTab.prototype.status('Loading auto completion...');

@@ -52,7 +52,7 @@ if(appNewUI && ZaSettings){
             var ti = new ZaTreeItemData({
                 parent:parentPath,
                 id:ZaId.getTreeItemId(ZaId.PANEL_APP,"magHV",null, "ZefaGetaccountHV"),
-                text: "ZEFA's Getaccount extension",
+                text: "ZEFA's Getaccount",
                 mappingId: ZaZimbraAdmin._ZEFA_GETACCOUNT_VIEW});
             tree.addTreeItemData(ti);
 

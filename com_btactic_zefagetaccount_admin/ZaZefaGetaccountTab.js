@@ -62,7 +62,7 @@ ZaZefaGetaccountTab.prototype.getTabIcon =
 
 ZaZefaGetaccountTab.prototype.getTabTitle =
     function () {
-        return "Share Toolkit";
+        return "ZEFA Getaccount";
     }
 
 ZaZefaGetaccountTab.prototype.getAccountsCallback = function (result) {

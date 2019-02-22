@@ -38,7 +38,8 @@ ZaZefaGetaccountTab = function(parent, entry) {
 
     +
 
-    '<h2>Generate persona\'s</h2>This option allows you to generate a persona for each alias in the users account. <br><br><input type="text" id="ZefaGetaccount-account-c" list="ZefaGetaccount-datalist" placeholder="user@domain.com">&nbsp;&nbsp;<button id="ZefaGetaccount-btnPersonaGen">OK</button>' +
+    '<h2>Getaccount\'s</h2>This option allows you to output the equivalent of \'zmprov getAccount\' from the Zimbra UI.\
+    <br><br><input type="text" id="ZefaGetaccount-account-c" list="ZefaGetaccount-datalist" placeholder="user@domain.com">&nbsp;&nbsp;<button id="ZefaGetaccount-btnGetaccount">OK</button>' +
     '<br><br><hr>'
 
     +
@@ -47,8 +48,8 @@ ZaZefaGetaccountTab = function(parent, entry) {
     ZaZefaGetaccountTab.prototype.status('Loading auto completion...');
 
 
-    var btnPersonaGen = document.getElementById('ZefaGetaccount-btnPersonaGen');
-    btnPersonaGen.onclick = AjxCallback.simpleClosure(this.btnPersonaGen);
+    var btnGetaccount = document.getElementById('ZefaGetaccount-btnGetaccount');
+    btnGetaccount.onclick = AjxCallback.simpleClosure(this.btnGetaccount);
 }
 
 
@@ -83,15 +84,15 @@ ZaZefaGetaccountTab.prototype.getAccountsCallback = function (result) {
    return;
 }
 
-ZaZefaGetaccountTab.prototype.btnPersonaGen = function () {
-    ZaZefaGetaccountTab.prototype.status('Creating persona\'s...');
+ZaZefaGetaccountTab.prototype.btnGetaccount = function () {
+    ZaZefaGetaccountTab.prototype.status('Running zmprov getAccount...');
 
     var accountA = document.getElementById('ZefaGetaccount-account-c').value;
   
     if(accountA)
     {
        var soapDoc = AjxSoapDoc.create("ZefaGetaccount", "urn:ZefaGetaccount", null);
-       soapDoc.getMethod().setAttribute("action", "createPersonas");
+       soapDoc.getMethod().setAttribute("action", "getAccount");
        soapDoc.getMethod().setAttribute("accounta", accountA);
        var csfeParams = new Object();
        csfeParams.soapDoc = soapDoc;

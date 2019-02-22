@@ -45,39 +45,6 @@ public class ZefaGetaccountSoapHandler extends DocumentHandler {
                 case "getAccounts":
                     zefaGetaccountResult.setText(this.runCommand("/usr/local/sbin/zefa-acctalias", "", "", "", ""));
                     break;
-                case "createShare":
-                case "removeShare":
-                    if ((this.validate(request.getAttribute("accountb"))) && (this.validate(request.getAttribute("accounta")))) {
-                        final String skipPersonaCreation;
-                        if ("true".equals(request.getAttribute("skipPersonaCreation"))) {
-                            skipPersonaCreation = "N";
-                        } else {
-                            skipPersonaCreation = "Y";
-                        }
-
-                        final String permissions;
-                        if (("r".equals(request.getAttribute("permissions"))) ||
-                                ("rw".equals(request.getAttribute("permissions"))) ||
-                                ("rwix".equals(request.getAttribute("permissions"))) ||
-                                ("rwixd".equals(request.getAttribute("permissions"))) ||
-                                ("rwixda".equals(request.getAttribute("permissions"))) ||
-                                ("none".equals(request.getAttribute("permissions"))))
-                        {
-                            permissions = request.getAttribute("permissions");
-                        } else {
-                            permissions = "rwixd";
-                        }
-
-                            if (request.getAttribute("action").equals("createShare")) {
-                                this.runCommand("/usr/local/sbin/subzim", request.getAttribute("accountb"), request.getAttribute("accounta"), skipPersonaCreation, permissions);
-                            } else if (request.getAttribute("action").equals("removeShare")) {
-                                this.runCommand("/usr/local/sbin/unsubzim", request.getAttribute("accountb"), request.getAttribute("accounta"), skipPersonaCreation, permissions);
-                            }
-
-                        zefaGetaccountResult.setText("");
-                    } else {
-                        zefaGetaccountResult.setText("Invalid email address specified.");
-                    }
                 case "createPersonas":
                     if (this.validate(request.getAttribute("accounta"))) {
                         this.runCommand("/usr/local/sbin/personagen", request.getAttribute("accounta"), "", "", "");

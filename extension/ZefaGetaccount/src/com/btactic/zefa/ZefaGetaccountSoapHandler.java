@@ -43,7 +43,7 @@ public class ZefaGetaccountSoapHandler extends DocumentHandler {
 
             switch (request.getAttribute("action")) {
                 case "getAccounts":
-                    zefaGetaccountResult.setText(this.runCommand("/usr/local/sbin/acctalias", "", "", "", ""));
+                    zefaGetaccountResult.setText(this.runCommand("/usr/local/sbin/zefa-acctalias", "", "", "", ""));
                     break;
                 case "createShare":
                 case "removeShare":

@@ -31,6 +31,6 @@
     </target>
 
     <target name="jar" depends="compile" description="Creates the jar file">
-        <jar manifest="META-INF/MANIFEST.MF" destfile="dist/ShareToolkit.jar" basedir="build" />
+        <jar manifest="META-INF/MANIFEST.MF" destfile="dist/ZefaGetaccount.jar" basedir="build" />
     </target>
 </project>

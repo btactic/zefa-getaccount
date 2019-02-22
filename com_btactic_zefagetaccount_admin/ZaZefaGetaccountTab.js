@@ -34,8 +34,11 @@ ZaZefaGetaccountTab = function(parent, entry) {
     resp = ZaRequestMgr.invoke(csfeParams, reqMgrParams);
 
     document.getElementById('ztab__ZEFA_GETACCOUNT').innerHTML = 
-    '<div style="padding-left:10px"><h1>ZEFA\'s Getaccount extension</h1>'
-
+    '<div style="padding-left:10px">'
+    +
+    '<h1>ZEFA\'s Getaccount extension</h1>'
+    +
+    '<datalist id="ZefaGetaccount-datalist"></datalist>'
     +
 
     '<h2>Getaccount</h2>This option allows you to output the equivalent of \'zmprov getAccount\' from the Zimbra UI.\

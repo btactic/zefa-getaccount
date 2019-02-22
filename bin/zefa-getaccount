@@ -35,7 +35,7 @@ echo
 exit 1
 fi
 
-$ACCOUNT="$1"
+ACCOUNT="$1"
 
 /opt/zimbra/bin/zmprov getAccount ${ACCOUNT}
 

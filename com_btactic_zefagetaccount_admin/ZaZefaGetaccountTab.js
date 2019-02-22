@@ -33,7 +33,7 @@ ZaZefaGetaccountTab = function(parent, entry) {
     var reqMgrParams = {} ;
     resp = ZaRequestMgr.invoke(csfeParams, reqMgrParams);
 
-    document.getElementById('ztab__ZEFA_GETACCOUNT').innerHTML = '<div style="padding-left:10px"><h1>ZEFAs Getaccount extension</h1>' +
+    document.getElementById('ztab__ZEFA_GETACCOUNT').innerHTML = '<div style="padding-left:10px"><h1>ZEFA\'s Getaccount extension</h1>' +
     '<h2>Create and remove shares</h2>This option allows you to share an entire account with another account. Useful for department and team mailboxes.<br><br><select id="ZefaGetaccount-action" onchange="ZaZefaGetaccountTab.prototype.uiUpdate(this.value);" ><option value="createShare">Share</option><option value="removeShare">Unshare</option></select> the account <input type="text" id="ZefaGetaccount-account-a" list="ZefaGetaccount-datalist" placeholder="user@domain.com">&nbsp;<span id="ZefaGetaccount-withfrom">with</span>:&nbsp;<input type="text" id="ZefaGetaccount-account-b" list="ZefaGetaccount-datalist" placeholder="other-user@domain.com"><datalist id="ZefaGetaccount-datalist"></datalist>&nbsp;&nbsp;<button id="ZefaGetaccount-btnCreateShare">OK</button>' +
     '<br><br><input type="checkbox" id="ZefaGetaccount-disablePersonaCreation">Share only (skip configuring sendAs/persona\'s and mail filter).' +
     '<br><br><b>Permissions:</b>' +

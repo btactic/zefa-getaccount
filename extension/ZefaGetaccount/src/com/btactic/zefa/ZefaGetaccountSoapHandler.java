@@ -73,7 +73,7 @@ public class ZefaGetaccountSoapHandler extends DocumentHandler {
         return matcher.find();
     }
 
-    private String runCommand(String cmd, String arg1, String arg2, String arg3, String arg4) throws ServiceException {
+    private String runCommandPayload(String cmd, String append_char, String arg1, String arg2, String arg3, String arg4) throws ServiceException {
         try {
             ProcessBuilder pb = new ProcessBuilder()
                     .command(cmd, arg1, arg2, arg3, arg4)
@@ -86,7 +86,7 @@ public class ZefaGetaccountSoapHandler extends DocumentHandler {
             String aux = "";
             while ((aux = cmdOutputBuffer.readLine()) != null) {
                 builder.append(aux);
-                builder.append(';');
+                builder.append(append_char);
             }
             String cmdResult = builder.toString();
             return cmdResult;
@@ -97,6 +97,13 @@ public class ZefaGetaccountSoapHandler extends DocumentHandler {
         {
             throw ServiceException.FAILURE("ZefaGetaccountSoapHandler runCommand exception", e);
         }
+    }
+
+    private String runCommand(String cmd, String arg1, String arg2, String arg3, String arg4) throws ServiceException {
+        runCommandPayload(cmd, ';', arg1, arg2, arg3, arg4)
+    }
+    private String runCommandNormalOutput(String cmd, String arg1, String arg2, String arg3, String arg4) throws ServiceException {
+        runCommandPayload(cmd, '\n', arg1, arg2, arg3, arg4)
     }
 
 }
